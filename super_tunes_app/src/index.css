@@ -14,7 +14,10 @@ html {
   border-radius: 5px;
   box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.05);
 }
-
+#super-tunes ul {
+  padding: 0;
+  list-style-type: none; /* Remove the dot from all song tiles */
+}
 #st-title {
   color: #525252;
   border-bottom: 2px solid #605dd5;
@@ -49,15 +52,12 @@ html {
 }
 
 .star {
-  position: relative;
-  right: 20px;
   width: 20px;
   height: 20px;
   background-image: url("./star.png");
   background-size: cover;
   display: inline-block;
 }
-
 .st-btn {
   position: relative;
   top: 0px;
