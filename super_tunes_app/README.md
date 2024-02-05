@@ -1,70 +1,61 @@
-# Getting Started with Create React App
+# Getting Started with Super Tunes React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+You’ll build an app that displays a list of song titles with ratings. The app also offers two buttons that should sort the list by either the song title or the ratings. The list of songs is provided as an array in the services/songs.js file. The main App.js file exports a class component that renders the UI of the application. 
 
-## Available Scripts
+## Key Skills
 
-In the project directory, you can run:
+1. The intent of this exercise is to give you a thorough workout on the following React features:
+2. Building class components
+3. Building presentational function components
+4. State management and manipulation using this.setState()
+5. Methods
+6. Rendering lists & setting the key attribute
+7. Using props
+8. Implementing prop-type validators
 
-### `npm start`
+### User Stories
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. The app loads up with the screen shown below. As you can see, it displays a list of song titles with the thumbnail, title, artist and rating:
+2. Users can also click on the ‘Sort by Title’ and ‘Sort by Rating’ buttons to actively sort this list.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+### Important Points
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+General Notes
+1. Except the App.js, create all components in the /src/components folder
+2. The stylesheet for the assignment is provided to you and comes imported into the index.js file. 
+3. Use the design specification documents for all components to understand how the UIs are to be built and the exact CSS selectors to use so that components render correctly. 
+4. Please ensure all naming conventions exactly as and where mentioned for successful completion and grading of the assignment. 
 
-### `npm run build`
+### Notes for Component: <App />
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The App Component is the main component that renders the Application and is also responsible for state management & manipulation.
+The App component must be built as a class component
+The array of songs and data can be imported from /services/songs file. Simply use an import statement: import songs from "./services/songs";
+Create a state variable named songs which can be set to the array imported from the songs service module as mentioned above.
+For sorting by rating, you can use the following expression:
+ [...this.state.songs.sort((a, b) => b.rating - a.rating)]
+For sorting by title, use the following expression:
+ [...this.state.songs.sort((a, b) =>a.title.toUpperCase() < b.title.toUpperCase() ? -1 : 1)]
+ 
+Notes for Component: <SongCard />
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The SongCard component renders a row with the thumbnail, title, artist and rating values for a song.  
+This component must be a function component
+Include a prop named ‘data’ which should be an object with the following shape:
+{
+   thumb: String,
+   title: String,
+   artist: String,
+   rating: Number
+}
+Implement prop-type validators
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Notes for Component: <Rating />
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This component accepts a number as a prop and renders the equivalent number of star icons on the UI.
+This component must be a function component
+Include a prop named ‘stars’ which should bring in a number that translates to the number of stars that you should render.
+The actual star icon is a div with the class-name ‘star’.
+To be able to use the .map() method to render instances of the above said div, you can use this expression:
+ [...Array(Math.round(stars <= 5 ? stars : 0)).keys()].map();
